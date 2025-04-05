@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Animated } from 'react-native';
+import AppNavigator from './src/navigation/index'; // Importa el componente de navegación
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,11 +33,8 @@ const App = () => {
     );
   }
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.mainText}>¡Bienvenido a la aplicación!</Text>
-    </View>
-  );
+  // Renderiza la navegación principal después de la carga
+  return <AppNavigator />;
 };
 
 const styles = StyleSheet.create({
@@ -55,11 +53,7 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     marginBottom: 20,
   },
-  mainText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333333',
-  },
 });
 
-export default App;0
+export default App;
+
