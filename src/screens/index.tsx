@@ -1,39 +1,54 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, TextInput } from 'react-native';
 
 const Home = () => {
+    const [menuVisible, setMenuVisible] = useState(false);
     const menuOptions = ['Opción 1', 'Opción 2', 'Opción 3'];
     const cards = [
-        { id: '1', title: 'Carta 1', description: 'Descripción de la carta 1' },
-        { id: '2', title: 'Carta 2', description: 'Descripción de la carta 2' },
-        { id: '3', title: 'Carta 3', description: 'Descripción de la carta 3' },
+        { id: '1', title: 'Puno Seguro', description: 'Elige\nDescribe\nReporta', image: 'https://via.placeholder.com/150' },
+        { id: '2', title: 'Encuentra tu micro', description: 'Elige\nDescribe\nReporta', image: 'https://via.placeholder.com/150' },
+        { id: '3', title: 'Descubre Puno', description: 'Elige\nDescribe\nReporta', image: 'https://via.placeholder.com/150' },
+        { id: '4', title: 'Mesa de partes', description: 'Elige\nDescribe\nReporta', image: 'https://via.placeholder.com/150' },
     ];
 
-    const renderCard = ({ item }: { item: { id: string; title: string; description: string } }) => (
+    const renderCard = ({ item }: { item: { id: string; title: string; description: string; image: string } }) => (
         <View style={styles.card}>
-            <Text style={styles.cardTitle}>{item.title}</Text>
-            <Text style={styles.cardDescription}>{item.description}</Text>
+            <Image source={{ uri: item.image }} style={styles.cardImage} />
+            <View style={styles.cardContent}>
+                <Text style={styles.cardTitle}>{item.title}</Text>
+                <Text style={styles.cardDescription}>{item.description}</Text>
+            </View>
         </View>
     );
 
     return (
         <View style={styles.container}>
+            {/* Header */}
             <View style={styles.header}>
-                <TouchableOpacity style={styles.menuButton}>
-                    <Text>😎</Text>
-                    <View style={styles.menuDropdown}>
-                        {menuOptions.map((option, index) => (
-                            <Text key={index} style={styles.menuOption}>
-                                {option}
-                            </Text>
-                        ))}
-                    </View>
+                <TouchableOpacity onPress={() => setMenuVisible(!menuVisible)}>
+                    <Text style={styles.menuButtonText}>Menú</Text>
                 </TouchableOpacity>
-                <Image
-                    source={{ uri: 'https://via.placeholder.com/50' }}
-                    style={styles.headerImage}
-                />
+                <Text style={styles.headerTitle}>Inicio</Text>
+                <View style={styles.profilePlaceholder} />
             </View>
+
+            {/* Dropdown Menu */}
+            {menuVisible && (
+                <View style={styles.menuDropdown}>
+                    {menuOptions.map((option, index) => (
+                        <Text key={index} style={styles.menuOption}>
+                            {option}
+                        </Text>
+                    ))}
+                </View>
+            )}
+
+            {/* Search Bar */}
+            <View style={styles.searchBar}>
+                <TextInput placeholder="Buscar" style={styles.searchInput} />
+            </View>
+
+            {/* Card List */}
             <FlatList
                 data={cards}
                 renderItem={renderCard}
@@ -47,56 +62,96 @@ const Home = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#f5f5f5',
     },
     header: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
         alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: '#0088cc',
         padding: 16,
-        backgroundColor: '#f8f8f8',
+        paddingTop: 40,
     },
-    menuButton: {
-        position: 'relative',
+    headerTitle: {
+        color: '#fff',
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    profilePlaceholder: {
+        width: 40,
+        height: 40,
+        backgroundColor: '#fff',
+        borderRadius: 20,
+    },
+    menuButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
     menuDropdown: {
         position: 'absolute',
-        top: 30,
-        left: 0,
+        top: 80,
+        left: 16,
         backgroundColor: '#fff',
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 4,
+        borderRadius: 8,
         padding: 8,
-        zIndex: 1,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2,
     },
     menuOption: {
-        paddingVertical: 4,
-        paddingHorizontal: 8,
+        paddingVertical: 8,
+        paddingHorizontal: 16,
+        fontSize: 16,
+        color: '#333',
     },
-    headerImage: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
+    searchBar: {
+        backgroundColor: '#fff',
+        margin: 16,
+        paddingHorizontal: 12,
+        paddingVertical: 8,
+        borderRadius: 8,
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2,
+    },
+    searchInput: {
+        fontSize: 16,
     },
     content: {
-        padding: 16,
+        paddingHorizontal: 16,
     },
     card: {
-        backgroundColor: '#f0f0f0',
-        padding: 16,
+        flexDirection: 'row',
+        backgroundColor: '#fff',
         borderRadius: 8,
         marginBottom: 16,
+        overflow: 'hidden',
+        shadowColor: '#000',
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2,
+    },
+    cardImage: {
+        width: 100,
+        height: 100,
+    },
+    cardContent: {
+        flex: 1,
+        padding: 16,
     },
     cardTitle: {
         fontSize: 18,
         fontWeight: 'bold',
+        color: '#333',
     },
     cardDescription: {
         fontSize: 14,
         color: '#666',
+        marginTop: 8,
     },
 });
 
 export default Home;
-
