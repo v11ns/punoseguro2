@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Animated } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';  // Importar este componente
 import {NavigationContainer} from '@react-navigation/native';
-import Home from './src/screens/HomeScreen';  // Importa el componente de navegación
+import Home from './src/screens/Inicio';  // Importa el componente de navegación
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
