@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Animated } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';  // Importar este componente
-import Home from './src/screens/index';  // Importa el componente de navegación
+import {NavigationContainer} from '@react-navigation/native';
+import Home from './src/screens/HomeScreen';  // Importa el componente de navegación
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -36,9 +37,12 @@ const App = () => {
 
   // Renderiza la navegación principal después de la carga
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <Home/>
-    </GestureHandlerRootView>
+    <NavigationContainer>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+           <Home/>
+        </GestureHandlerRootView>
+  </NavigationContainer>
+
   );
 };
 

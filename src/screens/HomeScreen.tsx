@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, TextInput } from 'react-native';
 
-const Home = () => {
+
+const Home:React.FC = ({navigation}) => {
     const [menuVisible, setMenuVisible] = useState(false);
     const menuOptions = ['Opción 1', 'Opción 2', 'Opción 3'];
     const cards = [
