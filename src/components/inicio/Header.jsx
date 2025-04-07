@@ -59,8 +59,8 @@ const styles = StyleSheet.create({
         flex: 1, // Ocupa el espacio restante para centrar el título
     },
     icon: {
-        width: 35,
-        height: 35,
+        width: 30,
+        height: 30,
     },
     searchBar: {
         backgroundColor: '#fff',
