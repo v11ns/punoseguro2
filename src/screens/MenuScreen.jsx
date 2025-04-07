@@ -3,13 +3,14 @@ import { View, StyleSheet } from 'react-native';
 import Menu from '../components/menu/Menu';
 
 const MenuScreen = ({ navigation }) => {
-    const handleNavigate = (screen) => {
-        navigation.navigate(screen);
-    };
-
+    
     return (
         <View style={styles.container}>
-            <Menu onClose={() => navigation.goBack()} onNavigate={handleNavigate} />
+            <Menu 
+                onClose={() => navigation.goBack()}
+                onPress={() => navigation.navigate('Menu')}
+                onNavigate={(screen) => navigation.navigate(screen)} 
+            />
         </View>
     );
 };

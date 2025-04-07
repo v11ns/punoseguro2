@@ -1,82 +1,62 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import Header from '../components/formulario/Header';
+import Dropdown from '../components/formulario/Dropdown';
+import TextArea from '../components/formulario/TextArea';
+import SubmitButton from '../components/formulario/SubmitButton';
+import LocationButton from '../components/formulario/LocationButton';
+import UploadButton from '../components/formulario/UploadButton';
 
-const PunoSeguro:React.FC = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: '',
-    });
-
-    const handleChange = (field: string, value: string) => {
-        setFormData({ ...formData, [field]: value });
-    };
+const PunoSeguro: React.FC = () => {
+    const [incidentType, setIncidentType] = useState('');
+    const [description, setDescription] = useState('');
 
     const handleSubmit = () => {
-        console.log('Form Data:', formData);
+        console.log('Tipo de incidente:', incidentType);
+        console.log('Descripción:', description);
         // Aquí puedes manejar el envío del formulario
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Formulario Puno Seguro</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Nombre"
-                value={formData.name}
-                onChangeText={(text) => handleChange('name', text)}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Correo Electrónico"
-                value={formData.email}
-                onChangeText={(text) => handleChange('email', text)}
-                keyboardType="email-address"
-            />
-            <TextInput
-                style={styles.textArea}
-                placeholder="Mensaje"
-                value={formData.message}
-                onChangeText={(text) => handleChange('message', text)}
-                multiline
-            />
-            <Button title="Enviar" onPress={handleSubmit} />
+        <View style={styles.screen}>
+            <Header title="Puno Seguro" onMenuPress={() => console.log('Abrir menú')} />
+            <ScrollView contentContainerStyle={styles.container}>
+                <Dropdown
+                    label="Incidente*"
+                    value={incidentType}
+                    setValue={setIncidentType}
+                    items={[
+                        { label: 'Limpieza Pública', value: 'limpieza' },
+                        { label: 'Accidente de tránsito', value: 'accidente' },
+                        { label: 'Transporte Urbano', value: 'transporte' },
+                        { label: 'Semáforos Inoperativos', value: 'semaforos' },
+                        { label: 'Parques y Jardines', value: 'parques' },
+                        { label: 'Iluminación Pública', value: 'iluminacion' },
+                    ]}
+                />
+                <TextArea
+                    label="Descripción"
+                    value={description}
+                    onChangeText={setDescription}
+                    placeholder="Describe lo que viste, qué pasó, cómo ocurrió, dónde..."
+                />
+                <UploadButton />
+                <LocationButton onPress={() => console.log('Compartir ubicación')} />
+                <SubmitButton onPress={handleSubmit} />
+            </ScrollView>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    screen: {
         flex: 1,
-        padding: 20,
         backgroundColor: '#f5f5f5',
     },
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 20,
-        textAlign: 'center',
-    },
-    input: {
-        height: 40,
-        borderColor: '#ccc',
-        borderWidth: 1,
-        borderRadius: 5,
-        marginBottom: 15,
-        paddingHorizontal: 10,
-        backgroundColor: '#fff',
-    },
-    textArea: {
-        height: 100,
-        borderColor: '#ccc',
-        borderWidth: 1,
-        borderRadius: 5,
-        marginBottom: 15,
-        paddingHorizontal: 10,
-        backgroundColor: '#fff',
-        textAlignVertical: 'top',
+    container: {
+        flexGrow: 1,
+        padding: 20,
     },
 });
 
 export default PunoSeguro;
-

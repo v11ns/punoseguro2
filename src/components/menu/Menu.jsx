@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, BackHandler } from 'react-native';
 
 const Menu = ({ onClose, onNavigate }) => {
     return (
@@ -32,7 +32,10 @@ const Menu = ({ onClose, onNavigate }) => {
             </View>
 
             {/* Botón de salir */}
-            <TouchableOpacity onPress={() => onNavigate('Salir')} style={styles.logoutButton}>
+            <TouchableOpacity
+                onPress={() => BackHandler.exitApp()} // Salir de la aplicación
+                style={styles.logoutButton}
+            >
                 <Text style={styles.logoutButtonText}>⤶ Salir</Text>
             </TouchableOpacity>
         </View>

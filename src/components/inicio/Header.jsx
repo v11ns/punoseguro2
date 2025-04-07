@@ -7,7 +7,7 @@ const Header = ({ onMenuPress, onSearch }) => {
             {/* Primera fila: Menú, Título e Ícono */}
             <View style={styles.topRow}>
                 <TouchableOpacity onPress={onMenuPress} style={styles.menuButton}>
-                    <Text style={styles.menuButtonText}>Menú</Text>
+                    <Text style={styles.menuButtonText}>☰</Text>
                 </TouchableOpacity>
                 <Text style={styles.headerTitle}>Inicio</Text>
                 <Image
@@ -20,7 +20,6 @@ const Header = ({ onMenuPress, onSearch }) => {
             <View style={styles.searchBar}>
                 <TextInput
                     placeholder="Buscar"
-                    placeholderTextColor="#000" // Color más claro para el placeholder
                     style={styles.searchInput}
                     onChangeText={onSearch}
                 />
