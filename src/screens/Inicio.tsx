@@ -2,8 +2,9 @@ import React from 'react';
 import { Text, View, StyleSheet, FlatList } from 'react-native';
 import Header from '../components/inicio/Header';
 import CardButton from '../components/inicio/CardButton';
+import { useNavigation } from '@react-navigation/native';
 
-const Inicio = ({ navigation }) => {
+const Inicio = () => {
     const cards = [
         {
             id: '1',
@@ -34,6 +35,8 @@ const Inicio = ({ navigation }) => {
             screen: 'MesaPartes',
         },
     ];
+
+    const navigation = useNavigation();
 
     return (
         <View style={styles.container}>

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ActivityIndicator, Animated } from 'react-nativ
 import { GestureHandlerRootView } from 'react-native-gesture-handler';  // Importar este componente
 import {NavigationContainer} from '@react-navigation/native';
 import Home from './src/screens/Inicio';  // Importa el componente de navegación
+import StackNavigator from './src/navigation/StackNavigator';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,11 +38,11 @@ const App = () => {
 
   // Renderiza la navegación principal después de la carga
   return (
-    <NavigationContainer>
         <GestureHandlerRootView style={{ flex: 1 }}>
-           <Home/>
+          <NavigationContainer>
+            <StackNavigator/>
+          </NavigationContainer>
         </GestureHandlerRootView>
-  </NavigationContainer>
 
   );
 };
