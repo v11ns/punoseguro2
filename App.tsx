@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Animated } from 'react-native';
+import { View, Text,Image, StyleSheet, ActivityIndicator, Animated } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';  // Importar este componente
-import {NavigationContainer} from '@react-navigation/native';
-import Home from './src/screens/Inicio';  // Importa el componente de navegación
-import StackNavigator from './src/navigation/StackNavigator';
+import Navigation from './src/navigation/Navigation';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,8 +26,12 @@ const App = () => {
   if (isLoading) {
     return (
       <View style={styles.container}>
+      <Image
+          source={require('./src/assets/images/munipuno.png')} // Ruta de la imagen
+          style={styles.icon}
+      />
         <Animated.View style={[styles.logoContainer, { opacity: fadeAnim }]}>
-          <Text style={styles.logoText}>Puno Seguro</Text>
+          <Text style={styles.logoText}>Municipalidad de Puno</Text>
           <ActivityIndicator size="large" color="#ffffff" />
         </Animated.View>
       </View>
@@ -39,9 +41,7 @@ const App = () => {
   // Renderiza la navegación principal después de la carga
   return (
         <GestureHandlerRootView style={{ flex: 1 }}>
-          <NavigationContainer>
-            <StackNavigator/>
-          </NavigationContainer>
+          <Navigation/>
         </GestureHandlerRootView>
 
   );
@@ -63,6 +63,11 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     marginBottom: 20,
   },
+  icon: {
+    width:100,
+    height: 130,
+    marginBottom: 20,
+}
 });
 
 export default App;

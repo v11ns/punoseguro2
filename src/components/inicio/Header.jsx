@@ -17,11 +17,11 @@ const Header = ({ onMenuPress, onSearch }) => {
             </View>
 
             {/* Segunda fila: Barra de búsqueda */}
-            <View style={styles.searchBar}>
+            <View >
                 <TextInput
-                    placeholder="Buscar"
+                    placeholder="Buscar..."
                     placeholderTextColor="#000" // Color más claro para el placeholder
-                    style={styles.searchInput}
+                    style={styles.searchBar}
                     onChangeText={onSearch}
                 />
             </View>
@@ -73,11 +73,15 @@ const styles = StyleSheet.create({
         elevation: 2, // Sombra para Android
         width: '80%', // Reduce el ancho del buscador
         alignSelf: 'center', // Centra el buscador horizontalmente
+        color: '#000',
+        placeholderTextColor: '#000',
+        paddingHorizontal: 8,
     },
     searchInput: {
         fontSize: 16,
         flex: 1, // Ocupa el espacio restante dentro del buscador
-        color: '#333',
+        color: '#000',
+        placeholderTextColor: '#000', // Color del texto del placeholder
         paddingVertical: 4, // Agrega espacio interno vertical
         paddingHorizontal: 8, // Agrega espacio interno horizontal
     },
