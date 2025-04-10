@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: '#0088cc',
         padding: 16,
-        paddingTop: 50,
+        paddingTop: 40,
         borderBottomLeftRadius: 45, // Bordes redondeados en la esquina inferior izquierda
         borderBottomRightRadius: 45, // Bordes redondeados en la esquina inferior derecha
     },

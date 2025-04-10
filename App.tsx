@@ -1,3 +1,4 @@
+import 'react-native-reanimated';
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Animated } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';  // Importar este componente
